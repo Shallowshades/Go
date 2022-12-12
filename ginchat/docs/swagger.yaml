@@ -1,0 +1,90 @@
+info:
+  contact: {}
+paths:
+  /index:
+    get:
+      description: 首页
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 首页
+      tags:
+      - 首页
+  /user/createUser:
+    post:
+      description: 创建新用户
+      parameters:
+      - description: 用户名
+        in: query
+        name: name
+        type: string
+      - description: 密码
+        in: query
+        name: password
+        type: string
+      - description: 确认密码
+        in: query
+        name: repassword
+        type: string
+      responses:
+        "200":
+          description: code","message"}
+          schema:
+            type: string
+      summary: 新增用户
+      tags:
+      - 用户
+  /user/deleteUser:
+    delete:
+      description: 删除用户
+      parameters:
+      - description: id
+        in: query
+        name: id
+        type: string
+      responses:
+        "200":
+          description: code","message"}
+          schema:
+            type: string
+      summary: 删除用户
+      tags:
+      - 用户
+  /user/getUserList:
+    get:
+      description: 获取用户列表
+      responses:
+        "200":
+          description: code","message"}
+          schema:
+            type: string
+      summary: 获取用户列表
+      tags:
+      - 用户
+  /user/updateUser:
+    put:
+      description: 更新用户
+      parameters:
+      - description: id
+        in: query
+        name: id
+        type: string
+      - description: 用户名
+        in: query
+        name: name
+        type: string
+      - description: 密码
+        in: query
+        name: password
+        type: string
+      responses:
+        "200":
+          description: code","message"}
+          schema:
+            type: string
+      summary: 更新用户
+      tags:
+      - 用户
+swagger: "2.0"
