@@ -40,20 +40,27 @@ func GetUserList() []*UserBasic {
 // 按名字查找用户
 func FindUserByName(name string) *UserBasic {
 	user := &UserBasic{}
-	utils.DB.Where("name = ?", name).First(&user)
+	utils.DB.Where("name = ?", name).First(user)
+	return user
+}
+
+// 按名字和密码查找用户
+func FindUserByNameAndPwd(name, password string) *UserBasic {
+	user := &UserBasic{}
+	utils.DB.Where("name = ? and password = ?", name, password).First(user)
 	return user
 }
 
 // 按手机号查找用户
 func FindUserByPhone(phone string) *gorm.DB {
 	user := &UserBasic{}
-	return utils.DB.Where("phone = ?", phone).First(&user)
+	return utils.DB.Where("phone = ?", phone).First(user)
 }
 
 // 按邮箱查找用户
 func FindUserByEmail(email string) *gorm.DB {
 	user := &UserBasic{}
-	return utils.DB.Where("email = ?", email).First(&user)
+	return utils.DB.Where("email = ?", email).First(user)
 }
 
 // 创建新用户
@@ -76,6 +83,8 @@ func UpdateUser(user *UserBasic) *gorm.DB {
 	return utils.DB.Model(user).Updates(UserBasic{
 		Name:     user.Name,
 		Password: user.Password,
+		Email:    user.Email,
+		Phone:    user.Phone,
 	})
 }
 

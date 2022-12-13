@@ -112,6 +112,37 @@ const docTemplate = `{
                 }
             }
         },
+        "/user/login": {
+            "get": {
+                "description": "通过用户名和密码查找用户",
+                "tags": [
+                    "用户"
+                ],
+                "summary": "通过用户名和密码查找用户",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "用户名",
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "密码",
+                        "name": "password",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "code\",\"message\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/user/updateUser": {
             "put": {
                 "description": "更新用户",
@@ -136,6 +167,18 @@ const docTemplate = `{
                         "type": "string",
                         "description": "密码",
                         "name": "password",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "手机号",
+                        "name": "phone",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "邮箱",
+                        "name": "email",
                         "in": "query"
                     }
                 ],
