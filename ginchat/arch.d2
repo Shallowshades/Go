@@ -1,0 +1,42 @@
+# Levels
+FrontEnd: 前端
+Controller: 接入层
+Service: 业务层
+Dao: 持久层
+
+# Relation
+FrontEnd -> Controller
+Controller -> Service
+Service -> Dao
+
+# Contain
+FrontEnd: {
+  ios: IOS
+  andiord: Andiord
+  windows: Windows
+
+  linux: Linux
+  api: API
+  h5: HTML
+}
+
+Controller: {
+  TCP: tcp
+  HTTP/HTTPs: http/https
+  WebSocket: websocket
+}
+
+Service: {
+  identity: 鉴权
+  login: 登录
+  message: 消息
+  chat: 聊天
+  heart: 心跳检测
+  manage: 用户管理
+}
+
+Dao: {
+  sql: MySQL
+  nosql: Redis
+  mq: 消息队列
+}
