@@ -49,11 +49,14 @@ func FindUserByName(name string) *UserBasic {
 func FindUserByNameAndPwd(name, password string) *UserBasic {
 	user := &UserBasic{}
 	utils.DB.Where("name = ? and password = ?", name, password).First(user)
+<<<<<<< HEAD
 
 	//token加密
 	str := fmt.Sprintf("%d", time.Now().Unix())
 	tmp := utils.MD5Encode(str)
 	utils.DB.Model(&user).Where("id = ?", user.ID).Update("identity", tmp)
+=======
+>>>>>>> d5ce4828dab87623fd100f4a3e66bed5174de7c3
 	return user
 }
 

@@ -159,6 +159,7 @@ func UpdateUser(c *gin.Context) {
 // 	},
 // )
 
+<<<<<<< HEAD
 // func SendMsg(c *gin.Context){
 // 	ws, err := upGrader.Upgrade(c.Writer, c.Request, nil)
 // 	if err != nil{
@@ -174,6 +175,8 @@ func UpdateUser(c *gin.Context) {
 // 	MsgHandler(c, ws)
 // }
 
+=======
+>>>>>>> d5ce4828dab87623fd100f4a3e66bed5174de7c3
 // func RedisMsg(c *gin.Context) {
 // 	userIdA, _ := strconv.Atoi(c.PostForm("userIdA"))
 // 	userIdB, _ := strconv.Atoi(c.PostForm("userIdB"))
