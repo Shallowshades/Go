@@ -159,6 +159,21 @@ func UpdateUser(c *gin.Context) {
 // 	},
 // )
 
+// func SendMsg(c *gin.Context){
+// 	ws, err := upGrader.Upgrade(c.Writer, c.Request, nil)
+// 	if err != nil{
+// 		fmt.Println(err)
+// 		return
+// 	}
+// 	defer func(ws *websocket.Conn){
+// 		err = ws.Close()
+// 		if err != nil{
+// 			fmt.Println(err)
+// 		}
+// 	}(ws)
+// 	MsgHandler(c, ws)
+// }
+
 // func RedisMsg(c *gin.Context) {
 // 	userIdA, _ := strconv.Atoi(c.PostForm("userIdA"))
 // 	userIdB, _ := strconv.Atoi(c.PostForm("userIdB"))

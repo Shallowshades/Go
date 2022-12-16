@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"ginchat/utils"
 	"time"
 
@@ -20,7 +21,7 @@ type UserBasic struct {
 	Salt          string
 	LoginTime     time.Time
 	HeartBeatTime time.Time
-	LogoutTime    time.Time //`gorm:"column:login_out_time" json:"login_out_time"`
+	LogoutTime    time.Time
 	IsLogout      bool
 	DeviceInfo    string
 }
@@ -48,6 +49,11 @@ func FindUserByName(name string) *UserBasic {
 func FindUserByNameAndPwd(name, password string) *UserBasic {
 	user := &UserBasic{}
 	utils.DB.Where("name = ? and password = ?", name, password).First(user)
+
+	//token加密
+	str := fmt.Sprintf("%d", time.Now().Unix())
+	tmp := utils.MD5Encode(str)
+	utils.DB.Model(&user).Where("id = ?", user.ID).Update("identity", tmp)
 	return user
 }
 
