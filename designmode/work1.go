@@ -152,10 +152,10 @@ type Computer struct {
 	Memory AbstractMemory
 }
 
-func (this *Computer) Run() {
-	this.Cpu.Calculate()
-	this.Gpu.Display()
-	this.Memory.Storage()
+func (c *Computer) Run() {
+	c.Cpu.Calculate()
+	c.Gpu.Display()
+	c.Memory.Storage()
 }
 
 func main() {

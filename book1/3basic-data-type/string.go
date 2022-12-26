@@ -338,6 +338,69 @@ func main() {
 		fmt.Println(i1)
 		fmt.Println(i2)
 	}
+	{
+		//字符串连接
+		s1 := "hello, world"
+		s2 := "hello, world"
+		s3 := "hello, world"
+
+		fmt.Printf("s1: %v\n", s1)
+		fmt.Printf("s2: %v\n", s2)
+		fmt.Printf("s3: %v\n", s3)
+
+		fmt.Printf("s1: %p\n", &s1)
+		fmt.Printf("s2: %p\n", &s2)
+		fmt.Printf("s3: %p\n", &s3)
+
+		fmt.Printf("s1[0] : %q\n", s1[0])
+
+		s := strings.Join([]string{s1, s2, s3}, " | ")
+		fmt.Printf("s: %v\n", s)
+
+		//写在缓冲区，效率较高
+		var buf bytes.Buffer
+		buf.WriteString(s1)
+		buf.WriteByte('-')
+		buf.WriteString(s2)
+		buf.WriteByte('-')
+		buf.WriteString(s3)
+		fmt.Printf("buf: %v\n", buf)
+		fmt.Printf("buf.Bytes(): %v\n", buf.Bytes())
+		s4 := buf.String()
+		fmt.Printf("s4: %v\n", s4)
+
+		//strings.Builder
+		var b strings.Builder
+		for i := 3; i >= 1; i-- {
+			fmt.Fprintf(&b, "%d...", i)
+		}
+		b.WriteString("ignition")
+		fmt.Println(b.String())
+
+		//strings.Replacer
+		r := strings.NewReplacer("<", "&lt;", ">", "&gt;")
+		fmt.Println(r.Replace("This is <b>HTML</b>!"))
+
+		fmt.Println(strings.Count("five", ""))
+
+		//Cut 裁剪去一部分
+		show := func(s, sep string) {
+			before, after, found := strings.Cut(s, sep)
+			fmt.Printf("Cut(%q, %q) = %q, %q, %v\n", s, sep, before, after, found)
+		}
+		show("Gopher", "Go")
+		show("Gopher", "ph")
+		show("Gopher", "er")
+		show("Gopher", "Badger")
+
+		fmt.Printf("%d\n", '\n')
+
+		//Index
+		fmt.Printf("strings.Index(\"hello,world\", \"lo\"): %v\x0a", strings.Index("hello,world", "lo"))
+
+		var sd string = "gogogo"
+		fmt.Printf("sd: %q\n", sd)
+	}
 
 	{
 		//test 3.10
