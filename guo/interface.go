@@ -7,6 +7,14 @@ type usb interface {
 	write()
 }
 
+type player interface {
+	playMusic()
+}
+
+type video interface {
+	playVideo()
+}
+
 type computer struct {
 	name string
 }
@@ -19,6 +27,16 @@ func (c computer) read() {
 func (c computer) write() {
 	fmt.Printf("c.name: %v\t", c.name)
 	fmt.Println("write...")
+}
+
+func (c computer) playMusic() {
+	fmt.Printf("c.name: %v\t", c.name)
+	fmt.Println("play music...")
+}
+
+func (c computer) playVideo() {
+	fmt.Printf("c.name: %v\t", c.name)
+	fmt.Println("play video...")
 }
 
 type mobile struct {
@@ -54,9 +72,19 @@ type dog struct {
 	name string
 }
 
+type cat struct {
+	name string
+}
+
 func (d *dog) eat(name string) string {
-	fmt.Printf("%s is eating %s", d.name, name)
+	fmt.Printf("[dog]%s is eating %s\n", d.name, name)
 	d.name = "white"
+	return "eat well"
+}
+
+func (c *cat) eat(name string) string {
+	fmt.Printf("[cat]%s is eating %s\n", c.name, name)
+	c.name = "white"
 	return "eat well"
 }
 
@@ -87,9 +115,36 @@ func main() {
 	//接口的接收者
 	{
 		var p Pet
-		p = &dog{"black"} //dog的eat为指针接收者，使用指针
-		fmt.Printf("p.eat(): %v\n", p.eat("chicken"))
+		p = &dog{"black"} //dog的eat为指针接收者，必须使用指针
+
+		p.eat("chicken") //不使用指针接受的情况，即使接口接受的是指针，函数也无法修改其内部值
 		fmt.Println(p)
+	}
+
+	//一个类型可以实现多个接口
+	//一个接口可以被多个类型实现
+	{
+		var p player
+		var v video
+
+		c := &computer{"XiaoMi"}
+
+		p = c
+		p.playMusic()
+
+		v = c
+		v.playVideo()
+
+		var pet Pet
+
+		dog := &dog{"black"}
+		cat := &cat{"kitty"}
+
+		pet = dog
+		pet.eat("bone")
+
+		pet = cat
+		pet.eat("fish")
 	}
 
 }
